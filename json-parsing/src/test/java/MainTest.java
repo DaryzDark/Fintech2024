@@ -19,8 +19,6 @@ public class MainTest {
     private InputStream inputStreamError;
     private ObjectMapper objectMapper;
     private CityService cityService;
-    private final String cityFilePath = "city.xml";
-    private final String cityErrorFilePath = "cityError.xml";
 
     @BeforeEach
     public void setUp() {
@@ -32,11 +30,13 @@ public class MainTest {
 
     @AfterEach
     public void tearDown() {
+        String cityFilePath = "city.xml";
         File cityFile = new File(cityFilePath);
         if (cityFile.exists()) {
             assertTrue(cityFile.delete(), "city.xml should be deleted after the test");
         }
 
+        String cityErrorFilePath = "cityError.xml";
         File cityErrorFile = new File(cityErrorFilePath);
         if (cityErrorFile.exists()) {
             assertTrue(cityErrorFile.delete(), "cityError.xml should be deleted after the test");

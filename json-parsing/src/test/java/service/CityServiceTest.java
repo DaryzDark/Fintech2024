@@ -12,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 class CityServiceTest {
-
     @Mock
     private XmlMapper xmlMapper;
 
@@ -21,8 +20,9 @@ class CityServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
+            MockitoAnnotations.openMocks(this);
     }
+
 
     @Test
     public void testToXML_Success() throws Exception {
