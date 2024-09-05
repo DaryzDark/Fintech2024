@@ -1,3 +1,5 @@
+package model;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -16,13 +18,4 @@ public class City {
     @JsonProperty("coords")
     private Coords coords;
 
-    public String toXML() {
-        try {
-            XmlMapper xmlMapper = new XmlMapper();
-            return xmlMapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            System.err.println("Object serialization to XML error: " + e.getMessage());
-            return "<error>Object serialization to XML error</error>";
-        }
-    }
 }
