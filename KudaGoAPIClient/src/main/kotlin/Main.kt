@@ -26,23 +26,3 @@ fun main() {
 
     println(markdownText)
 }
-
-fun main1() = runBlocking {
-    val client = HttpClient(CIO) {
-    }
-
-    val newsRepository = NewsKudaGoRepository(client)
-
-    try {
-        val newsList: List<News> = newsRepository.getAllNews(count = 10)
-
-        println("Retrieved ${newsList.size} news articles:")
-        newsList.forEach { news ->
-            println("${news.id}: ${news.title} (${news.publicationDate})")
-        }
-    } catch (e: Exception) {
-        println("Failed to retrieve news: ${e.message}")
-    } finally {
-        client.close()
-    }
-}
