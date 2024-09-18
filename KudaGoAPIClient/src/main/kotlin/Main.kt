@@ -1,10 +1,6 @@
 import customDSL.ProgrammingLanguage
 import customDSL.readme
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import kotlinx.coroutines.runBlocking
-import model.News
-import repository.NewsKudaGoRepository
+
 
 fun main() {
     val markdownText = readme {
