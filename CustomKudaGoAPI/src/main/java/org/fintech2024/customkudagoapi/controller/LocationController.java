@@ -1,8 +1,8 @@
 package org.fintech2024.customkudagoapi.controller;
 
-import org.fintech2024.customkudagoapi.annotation.LogExecutionTime;
 import org.fintech2024.customkudagoapi.model.Location;
 import org.fintech2024.customkudagoapi.service.LocationService;
+import org.fintech2024.logexecutiontimestarter.config.annotation.LogExecutionTime;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

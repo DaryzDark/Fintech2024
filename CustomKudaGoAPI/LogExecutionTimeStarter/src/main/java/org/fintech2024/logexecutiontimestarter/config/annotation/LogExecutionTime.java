@@ -1,4 +1,4 @@
-package org.fintech2024.customkudagoapi.annotation;
+package org.fintech2024.logexecutiontimestarter.config.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

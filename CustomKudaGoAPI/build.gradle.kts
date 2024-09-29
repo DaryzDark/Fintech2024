@@ -15,14 +15,13 @@ java {
 
 repositories {
 	mavenCentral()
-	mavenLocal()
 }
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-aop:3.3.4")
-	implementation("org.springframework.boot:spring-boot-starter-logging:3.3.4")
-
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation(project(":LogExecutionTimeStarter"))
 
 	implementation("org.slf4j:slf4j-api:2.0.16")
 	implementation("ch.qos.logback:logback-classic:1.5.8")

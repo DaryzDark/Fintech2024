@@ -2,7 +2,7 @@ package org.fintech2024.customkudagoapi.initializer;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.fintech2024.customkudagoapi.annotation.LogExecutionTime;
+import org.fintech2024.logexecutiontimestarter.config.annotation.LogExecutionTime;
 import org.fintech2024.customkudagoapi.model.Category;
 import org.fintech2024.customkudagoapi.model.Location;
 import org.fintech2024.customkudagoapi.repository.InMemoryGenericDataStore;
