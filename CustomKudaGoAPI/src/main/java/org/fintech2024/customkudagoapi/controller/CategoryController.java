@@ -1,5 +1,6 @@
 package org.fintech2024.customkudagoapi.controller;
 
+import jakarta.validation.Valid;
 import org.fintech2024.customkudagoapi.model.Category;
 import org.fintech2024.customkudagoapi.service.CategoryService;
 import org.fintech2024.logexecutiontimestarter.config.annotation.LogExecutionTime;
@@ -34,13 +35,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.addCategory(category);
         return ResponseEntity.status(201).body(createdCategory);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @Valid @RequestBody Category category) {
         Optional<Category> updatedCategory = categoryService.updateCategory(id, category);
         return updatedCategory.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

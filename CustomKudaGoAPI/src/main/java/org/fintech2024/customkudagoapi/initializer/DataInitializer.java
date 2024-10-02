@@ -34,7 +34,7 @@ public class DataInitializer {
 
         try {
             log.info("Request categories from the KudaGo API...");
-            List<Category> categories = apiService.fetchCategories();
+            List<Category> categories = apiService.fetchCategories("https://kudaGo.com");
             categories.forEach(categoryDataStore::add);
             log.info("The categories have been successfully uploaded and saved. Total categories: {}", categories.size());
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class DataInitializer {
 
         try {
                 log.info("Requesting locations from the KudaGo API...");
-            List<Location> locations = apiService.fetchLocations();
+            List<Location> locations = apiService.fetchLocations("https://kudaGo.com");
             locations.forEach(locationDataStore::add);
             log.info("The locations have been successfully uploaded and saved. Total locations:{}", locations.size());
         } catch (Exception e) {

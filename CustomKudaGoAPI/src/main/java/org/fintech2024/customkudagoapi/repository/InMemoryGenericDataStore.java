@@ -1,5 +1,7 @@
 package org.fintech2024.customkudagoapi.repository;
 
+import org.fintech2024.customkudagoapi.exeption.EntityNotFoundException;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -32,6 +34,9 @@ public class InMemoryGenericDataStore<T> {
     }
 
     public void delete(Long id) {
+        if (!store.containsKey(id)) {
+            throw new EntityNotFoundException(id);
+        }
         store.remove(id);
     }
 }

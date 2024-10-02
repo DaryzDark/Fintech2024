@@ -14,16 +14,18 @@ public class FetchKudaGoAPIService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public List<Category> fetchCategories() {
-        String url_params = "?fields=slug,name";
-        String url = "https://kudago.com/public-api/v1.4/place-categories/" + url_params;
+
+
+    public List<Category> fetchCategories(String baseUrl) {
+        String urlParams = "?fields=slug,name";
+        String url = baseUrl + "/public-api/v1.4/place-categories/" + urlParams;
         Category[] categories = restTemplate.getForObject(url, Category[].class);
         return Arrays.asList(Objects.requireNonNull(categories));
     }
 
-    public List<Location> fetchLocations() {
-        String url_params = "?fields=slug,name,timezone,coords,language";
-        String url = "https://kudago.com/public-api/v1.4/locations/" + url_params;
+    public List<Location> fetchLocations(String baseUrl) {
+        String urlParams = "?fields=slug,name,timezone,coords,language";
+        String url = baseUrl + "/public-api/v1.4/locations/" + urlParams;
         Location[] locations = restTemplate.getForObject(url, Location[].class);
         return Arrays.asList(Objects.requireNonNull(locations));
     }
