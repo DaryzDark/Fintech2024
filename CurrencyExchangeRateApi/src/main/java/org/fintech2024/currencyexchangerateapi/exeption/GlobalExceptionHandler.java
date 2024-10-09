@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(CurrencyServiceUnavailableException.class)
-    public ResponseEntity<Map<String, Object>> handleCurrencyServiceUnavailableException(CurrencyServiceUnavailableException ex, WebRequest request) {
+    public ResponseEntity<Map<String, Object>> handleCurrencyServiceUnavailableException(CurrencyServiceUnavailableException ex) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Retry-After", String.valueOf(ex.getRetryAfterSeconds()));
 
