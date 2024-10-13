@@ -22,8 +22,8 @@ public class AppConfig {
     public CacheManager cacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager("currencyRates");
         cacheManager.setCaffeine(Caffeine.newBuilder()
-                .expireAfterWrite(1, TimeUnit.HOURS) // Время жизни кеша 1 час
-                .maximumSize(1000)); // Ограничение на количество элементов в кеше
+                .expireAfterWrite(1, TimeUnit.HOURS)
+                .maximumSize(1000));
         return cacheManager;
     }
 }

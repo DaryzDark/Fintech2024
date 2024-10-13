@@ -37,7 +37,6 @@ class CurrencyControllerTest {
 
     @Test
     void getCurrencyRate_Success() throws Exception {
-        // Mocking the service response
         Map<String, Object> mockResponse = Map.of("currency", "USD", "rate", 74.85);
         when(currencyService.getCurrencyRate(anyString())).thenReturn(mockResponse);
 
@@ -50,10 +49,8 @@ class CurrencyControllerTest {
 
     @Test
     void getCurrencyRate_NotFound() throws Exception {
-        // Mocking the service to throw a CurrencyNotFoundException
         when(currencyService.getCurrencyRate(anyString())).thenThrow(new CurrencyNotFoundException("Currency code USD not found"));
 
-        // Performing a GET request and validating the response
         mockMvc.perform(get("/currencies/rates/INVALID")
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isNotFound());
@@ -61,7 +58,6 @@ class CurrencyControllerTest {
 
     @Test
     void getCurrencyRate_ServiceUnavailable() throws Exception {
-        // Mocking the service to throw a ServiceUnavailableException
         when(currencyService.getCurrencyRate(anyString())).thenThrow(new CurrencyServiceUnavailableException("Service unavailable", 3600));
 
         // Performing a GET request and validating the response
@@ -72,7 +68,6 @@ class CurrencyControllerTest {
 
     @Test
     void convertCurrency_Success() throws Exception {
-        // Mocking the service response
         Map<String, Object> mockResponse = Map.of(
                 "fromCurrency", "USD",
                 "toCurrency", "RUB",
@@ -80,10 +75,8 @@ class CurrencyControllerTest {
         );
         when(currencyService.convertCurrency(any(String.class), any(String.class), any())).thenReturn(mockResponse);
 
-        // Create a valid conversion request
         ConversionRequest conversionRequest = new ConversionRequest("USD", "RUB", BigDecimal.valueOf(100.5));
 
-        // Performing a POST request and validating the response
         mockMvc.perform(post("/currencies/convert")
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(conversionRequest)))
@@ -93,14 +86,11 @@ class CurrencyControllerTest {
 
     @Test
     void convertCurrency_NotFound() throws Exception {
-        // Mocking the service to throw a CurrencyNotFoundException
         when(currencyService.convertCurrency(any(String.class), any(String.class), any()))
                 .thenThrow(new CurrencyNotFoundException("Currency code USD not found"));
 
-        // Create a valid conversion request
         ConversionRequest conversionRequest = new ConversionRequest("USD", "RUB", BigDecimal.valueOf(100.5));
 
-        // Performing a POST request and validating the response
         mockMvc.perform(post("/currencies/convert")
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(conversionRequest)))
@@ -109,14 +99,11 @@ class CurrencyControllerTest {
 
     @Test
     void convertCurrency_ServiceUnavailable() throws Exception {
-        // Mocking the service to throw a ServiceUnavailableException
         when(currencyService.convertCurrency(any(String.class), any(String.class), any(BigDecimal.class)))
                 .thenThrow(new CurrencyServiceUnavailableException("Service unavailable", 3600));
 
-        // Create a valid conversion request
         ConversionRequest conversionRequest = new ConversionRequest("USD", "RUB", BigDecimal.valueOf(100.5));
 
-        // Performing a POST request and validating the response
         mockMvc.perform(post("/currencies/convert")
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(conversionRequest)))

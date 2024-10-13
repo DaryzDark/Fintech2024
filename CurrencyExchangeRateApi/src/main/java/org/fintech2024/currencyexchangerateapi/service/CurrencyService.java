@@ -56,11 +56,10 @@ public class CurrencyService {
 
 
     private void validateParameters(String fromCurrency, String toCurrency, BigDecimal amount) {
-        // Проверка на отсутствие и пустоту параметров
+
         checkIfParameterIsValid("fromCurrency", fromCurrency);
         checkIfParameterIsValid("toCurrency", toCurrency);
 
-        // Проверка суммы на null и значение <= 0
         if (amount == null) {
             throw new MissingParameterException("Missing parameter: amount");
         }

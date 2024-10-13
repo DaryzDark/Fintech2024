@@ -34,17 +34,14 @@ public class CurrencyCacheService {
     public Map<String, BigDecimal> getRates(String date) {
         String url = apiUrl + "?date_req=" + date;
         try {
-            // Блокирующий вызов для синхронного выполнения
             String xmlResponse = webClient.get()
                     .uri(url)
                     .retrieve()
                     .bodyToMono(String.class)
-                    .block(); // Используем блокирующий вызов для упрощения синхронного метода
+                    .block();
 
-            // Парсинг XML ответа в Map с курсами валют
             return parseRatesFromXml(xmlResponse);
         } catch (Exception ex) {
-            // Если произошла ошибка, выбрасываем специальное исключение
             throw new CurrencyServiceUnavailableException("Currency service is unavailable", 3600);
         }
     }
@@ -52,26 +49,20 @@ public class CurrencyCacheService {
     private Map<String, BigDecimal> parseRatesFromXml(String xml) {
         Map<String, BigDecimal> rates = new HashMap<>();
         try {
-            // Создание документа XML из строки
             Document doc = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder()
                     .parse(new InputSource(new StringReader(xml)));
 
-            // Получение всех узлов <Valute>
             NodeList valuteNodes = doc.getElementsByTagName("Valute");
 
-            // Проход по всем узлам <Valute>
             for (int i = 0; i < valuteNodes.getLength(); i++) {
                 Element valuteElement = (Element) valuteNodes.item(i);
 
-                // Извлечение значения валюты <CharCode> и курса <VunitRate>
                 String charCode = valuteElement.getElementsByTagName("CharCode").item(0).getTextContent();
                 String vunitRateStr = valuteElement.getElementsByTagName("VunitRate").item(0).getTextContent();
 
-                // Заменяем запятую на точку и преобразуем в BigDecimal
                 BigDecimal vunitRate = new BigDecimal(vunitRateStr.replace(",", "."));
 
-                // Сохраняем в карту (ключ - код валюты, значение - курс)
                 rates.put(charCode, vunitRate);
             }
             rates.put("RUB", BigDecimal.ONE);
