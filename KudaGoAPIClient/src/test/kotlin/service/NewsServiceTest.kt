@@ -29,12 +29,12 @@ class NewsServiceTest {
             News(1, "Title1", null, "Description1", "https://site1.com", 10, 5, LocalDate.now()),
             News(2, "Title2", null, "Description2", "https://site2.com", 20, 10, LocalDate.now())
         )
-        coEvery { newsRepository.getAllNews(100) } returns mockNews
+        coEvery { newsRepository.getNews(1,100) } returns mockNews
 
         val result = newsService.getMostRatedNews(2, period)
 
         assertEquals(mockNews, result)
-        coVerify { newsRepository.getAllNews(100) }
+        coVerify { newsRepository.getNews(1,100) }
     }
 
 

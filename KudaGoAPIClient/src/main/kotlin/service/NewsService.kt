@@ -14,7 +14,7 @@ class NewsService(private val newsRepository: NewsKudaGoRepository) {
     suspend fun getMostRatedNews(count: Int, period: ClosedRange<LocalDate>): List<News> {
         logger.info { "Fetching top $count most rated news for the period: $period" }
 
-        val allNews = newsRepository.getAllNews(count)
+        val allNews = newsRepository.getNews(1, count)
 
         val filteredNews = allNews
             .filter { it.publicationDate in period }

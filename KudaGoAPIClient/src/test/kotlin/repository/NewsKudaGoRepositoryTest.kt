@@ -65,7 +65,7 @@ class NewsKudaGoRepositoryTest {
     @Test
     fun `test getAllNews success`() = runTest {
         // Act
-        val result = newsRepository.getAllNews(5)
+        val result = newsRepository.getNews(1,5)
 
         // Assert
         assertEquals(2, result.size)
@@ -81,7 +81,7 @@ class NewsKudaGoRepositoryTest {
         }))
 
         assertFailsWith<Exception> {
-            badRepository.getAllNews(5)
+            badRepository.getNews(1,5)
         }
     }
 
@@ -98,7 +98,7 @@ class NewsKudaGoRepositoryTest {
         val invalidRepo = NewsKudaGoRepository(invalidJsonClient)
 
         assertFailsWith<Exception> {
-            invalidRepo.getAllNews(5)
+            invalidRepo.getNews(1,5)
         }
     }
 }
