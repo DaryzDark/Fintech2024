@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: CustomKudaGoAPI
+
+custom:
+  max-concurrent-requests: 5
+  threadpool:
+    size: 8
+  data:
+    refresh:
+      interval: PT1H
