@@ -24,7 +24,7 @@ fun main() = runBlocking {
     newsService.saveNews(filePath, mostRatedNews)
 
     try {
-        val newsList: List<News> = newsRepository.getAllNews(count = 10)
+        val newsList: List<News> = newsRepository.getNews(count = 10)
 
         println("Retrieved ${newsList.size} news articles:")
         newsList.forEach { news ->

@@ -13,8 +13,7 @@ private val logger = KotlinLogging.logger {}
 class NewsKudaGoRepository(
     private val client: HttpClient,
 ) {
-
-    suspend fun getAllNews(count: Int = 100): List<News> {
+    suspend fun getNews(page: Int = 1, count: Int = 100): List<News> {
         val location = "nsk"
         val fields = "id,title,publication_date,place,description,site_url,favorites_count,comments_count"
 
@@ -28,6 +27,7 @@ class NewsKudaGoRepository(
                 parameter("page_size", count)
                 parameter("order_by", "-publication_date")
                 parameter("location", location)
+                parameter("page", page)
             }.bodyAsText()
         } catch (e: Exception) {
             logger.error(e) { "Error while fetching news" }
@@ -40,7 +40,7 @@ class NewsKudaGoRepository(
             throw e
         }
 
-        logger.info { "Successfully retrieved ${newsResponse.results.size} news articles" }
+        logger.info { "Successfully retrieved ${newsResponse.results.size} news articles on page: $page" }
 
         return newsResponse.results
     }
