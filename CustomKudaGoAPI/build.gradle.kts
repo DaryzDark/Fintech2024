@@ -23,6 +23,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation(project(":LogExecutionTimeStarter"))
 
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.3.4")
+	implementation("org.liquibase:liquibase-core:4.29.2")
+	implementation("org.postgresql:postgresql:42.7.4")
+
 	implementation("org.slf4j:slf4j-api:2.0.16")
 	implementation("ch.qos.logback:logback-classic:1.5.8")
 
