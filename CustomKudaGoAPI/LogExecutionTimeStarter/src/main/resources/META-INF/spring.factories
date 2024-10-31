@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.fintech2024.logexecutiontimestarter.config.LogExecutionTimeAutoConfiguration
