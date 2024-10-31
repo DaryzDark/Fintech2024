@@ -4,6 +4,9 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.fintech2024.customkudagoapi.entity.Event;
 import org.fintech2024.customkudagoapi.entity.Place;
+import org.fintech2024.customkudagoapi.pattern.command.Command;
+import org.fintech2024.customkudagoapi.pattern.command.LoadCategoriesCommand;
+import org.fintech2024.customkudagoapi.pattern.command.LoadLocationsCommand;
 import org.fintech2024.customkudagoapi.repository.PlaceRepository;
 import org.fintech2024.customkudagoapi.service.EventService;
 import org.fintech2024.logexecutiontimestarter.config.annotation.LogExecutionTime;
@@ -20,8 +23,8 @@ import java.util.List;
 public class DataInitializer {
 
     private final FetchKudaGoAPIService apiService;
-    private final InMemoryGenericDataStore<Category> categoryDataStore;
-    private final InMemoryGenericDataStore<Location> locationDataStore;
+    private final Command loadCategoriesCommand;
+    private final Command loadLocationsCommand;
     private final PlaceRepository placeRepository;
     private final EventService eventService;
 
@@ -31,8 +34,8 @@ public class DataInitializer {
                            PlaceRepository placeRepository,
                            EventService eventService) {
         this.apiService = apiService;
-        this.categoryDataStore = categoryDataStore;
-        this.locationDataStore = locationDataStore;
+        this.loadLocationsCommand = new LoadLocationsCommand(apiService, locationDataStore);
+        this.loadCategoriesCommand = new LoadCategoriesCommand(apiService, categoryDataStore);
         this.placeRepository = placeRepository;
         this.eventService = eventService;
     }
@@ -42,23 +45,9 @@ public class DataInitializer {
     public void initData() {
         log.info("Data initialization started.");
 
-        try {
-            log.info("Request categories from the KudaGo API...");
-            List<Category> categories = apiService.fetchCategories();
-            categories.forEach(categoryDataStore::add);
-            log.info("The categories have been successfully uploaded and saved. Total categories: {}", categories.size());
-        } catch (Exception e) {
-            log.error("Categories load error: {}", e.getMessage());
-        }
+        loadCategoriesCommand.execute();
+        loadLocationsCommand.execute();
 
-        try {
-                log.info("Requesting locations from the KudaGo API...");
-            List<Location> locations = apiService.fetchLocations();
-            locations.forEach(locationDataStore::add);
-            log.info("The locations have been successfully uploaded and saved. Total locations:{}", locations.size());
-        } catch (Exception e) {
-            log.error("Location load error: {}", e.getMessage());
-        }
         try {
             log.info("Requesting places from the KudaGo API...");
             List<Place> places = apiService.fetchPlaces().getResults();
