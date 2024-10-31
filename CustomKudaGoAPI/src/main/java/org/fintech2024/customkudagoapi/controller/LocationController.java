@@ -1,5 +1,6 @@
 package org.fintech2024.customkudagoapi.controller;
 
+import jakarta.validation.Valid;
 import org.fintech2024.customkudagoapi.model.Location;
 import org.fintech2024.customkudagoapi.service.LocationService;
 import org.fintech2024.logexecutiontimestarter.config.annotation.LogExecutionTime;
@@ -34,13 +35,13 @@ public class LocationController {
     }
 
     @PostMapping
-    public ResponseEntity<Location> createLocation(@RequestBody Location location) {
+    public ResponseEntity<Location> createLocation(@Valid @RequestBody Location location) {
         Location createdLocation = locationService.addLocation(location);
         return ResponseEntity.status(201).body(createdLocation);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Location> updateLocation(@PathVariable Long id, @RequestBody Location location) {
+    public ResponseEntity<Location> updateLocation(@PathVariable Long id, @Valid @RequestBody Location location) {
         Optional<Location> updatedLocation = locationService.updateLocation(id, location);
         return updatedLocation.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
