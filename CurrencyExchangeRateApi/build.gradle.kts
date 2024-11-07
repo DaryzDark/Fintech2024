@@ -9,7 +9,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(22)
     }
 }
 
@@ -24,7 +24,20 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
 
+    implementation("org.springframework.boot:spring-boot-configuration-processor:3.3.5")
+
+
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+
+    implementation("com.h2database:h2:2.3.232")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.3.5")
+
+    implementation("org.springframework.boot:spring-boot-starter-security:3.3.5")
+    implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
+
+
 
 
 

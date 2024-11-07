@@ -4,8 +4,26 @@ spring:
   cache:
     type: simple
     cache-names: currencyRates
+  datasource:
+    url: jdbc:h2:mem:security
+    driverClassName: org.h2.Driver
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+token:
+  signing:
+    key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+
 currency-api:
-  url: "http://www.cbr.ru/scripts/XML_daily.asp"
+  url: "https://www.cbr.ru/scripts/XML_daily.asp"
+
 resilience4j:
   circuitbreaker:
     instances:
