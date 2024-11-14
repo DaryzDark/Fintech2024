@@ -1,7 +1,11 @@
+FROM gradle:8.10.2-jdk21 AS build
+
+WORKDIR /workspace
+COPY . .
+RUN gradle :CustomKudaGoAPI:build
+
 FROM amazoncorretto:21
 
 WORKDIR /app
-
-COPY CustomKudaGoAPI/build/libs/CustomKudaGoAPI-*.jar app.jar
-
+COPY --from=build /workspace/CustomKudaGoAPI/build/libs/CustomKudaGoAPI-*.jar app.jar
 CMD ["java", "-jar", "app.jar"]
