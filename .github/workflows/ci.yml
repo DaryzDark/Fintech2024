@@ -16,7 +16,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4.5.0
         with:
-          distribution: 'oracle'
+          distribution: 'corretto'
           java-version: '21'
 
       - name: Cache Gradle packages
