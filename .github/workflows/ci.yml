@@ -49,6 +49,7 @@ jobs:
 
       - name: Build CustomKudaGoAPI module
         run: ./gradlew :CustomKudaGoAPI:build
+        working-directory: CustomKudaGoAPI
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
