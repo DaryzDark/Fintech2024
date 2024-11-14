@@ -2,7 +2,7 @@ FROM gradle:8.10.2-jdk21 AS build
 
 WORKDIR /workspace
 COPY . .
-RUN gradle :CustomKudaGoAPI:build
+RUN gradle build
 
 FROM amazoncorretto:21
 
