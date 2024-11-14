@@ -26,7 +26,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}v2
           restore-keys: |
             ${{ runner.os }}-gradle-
-            
+
+      - name: Check gradle wrapper files
+        run: ls gradle/wrapper
+
       - name: Build with Gradle
         run: ./gradlew build
         working-directory: CustomKudaGoAPI
