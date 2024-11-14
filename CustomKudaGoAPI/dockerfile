@@ -2,6 +2,6 @@ FROM amazoncorretto:21
 
 WORKDIR /app
 
-COPY build/libs/CustomKudaGoAPI-*.jar app.jar
+COPY CustomKudaGoAPI/build/libs/CustomKudaGoAPI-*.jar app.jar
 
 CMD ["java", "-jar", "app.jar"]
