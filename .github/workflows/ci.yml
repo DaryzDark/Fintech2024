@@ -59,7 +59,7 @@ jobs:
 
       - name: Build and push Docker image 
         env:
-          IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fintech2024/customkudagoapi
+          IMAGE_NAME: ghcr.io/daryzdark/fintech2024/customkudagoapi
           VERSION: ${{ github.sha }}
         run: |
           docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$VERSION -f CustomKudaGoAPI/Dockerfile CustomKudaGoAPI
