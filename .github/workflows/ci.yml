@@ -44,6 +44,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v4.5.0
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+          
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
