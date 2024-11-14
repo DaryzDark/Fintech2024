@@ -58,6 +58,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
+        env:
+          IMAGE_NAME: ghcr.io/daryzdark/fintech2024/customkudagoapi
+          VERSION: ${{ github.sha }}
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/my-app:latest .
-          docker push ghcr.io/${{ github.repository }}/my-app:latest
+          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$VERSION .
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$VERSION
