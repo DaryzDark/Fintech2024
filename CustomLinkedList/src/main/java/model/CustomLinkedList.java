@@ -2,6 +2,7 @@ package model;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -119,5 +120,10 @@ public class CustomLinkedList<T> extends LinkedList<T> {
         String result = sb.toString();
         log.debug("List toString: {}", result);
         return result;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CustomIterator<>(head);
     }
 }
