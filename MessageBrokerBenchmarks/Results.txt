@@ -1,0 +1,15 @@
+Benchmark                                  (config)   Mode  Cnt  Score   Error   Units
+o.e.b.kafka.KafkaBenchmark.Messages             1:1  thrpt    5  1.819 ± 0.038  ops/ms
+o.e.b.kafka.KafkaBenchmark.Messages             3:1  thrpt    5  1.824 ± 0.025  ops/ms
+o.e.b.kafka.KafkaBenchmark.Messages             1:3  thrpt    5  1.819 ± 0.039  ops/ms
+o.e.b.kafka.KafkaBenchmark.Messages             3:3  thrpt    5  1.819 ± 0.037  ops/ms
+o.e.b.kafka.KafkaBenchmark.Messages           10:10  thrpt    5  1.823 ± 0.031  ops/ms
+o.e.b.rabbitmq.RabbitMQBenchmark.Messages       1:1  thrpt    5  1.742 ± 0.108  ops/ms
+o.e.b.rabbitmq.RabbitMQBenchmark.Messages       3:1  thrpt    5  1.733 ± 0.056  ops/ms
+o.e.b.rabbitmq.RabbitMQBenchmark.Messages       1:3  thrpt    5  1.727 ± 0.082  ops/ms
+o.e.b.rabbitmq.RabbitMQBenchmark.Messages       3:3  thrpt    5  1.733 ± 0.063  ops/ms
+o.e.b.rabbitmq.RabbitMQBenchmark.Messages     10:10  thrpt    5  1.735 ± 0.040  ops/ms
+
+
+Результаты получились довольно противоречивые(Kafka быстрее RabbitMQ). Связано, скорее всего,
+с неправильно настройкой или ограничением локального железа
