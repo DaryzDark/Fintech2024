@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: LogsAndMetrics
+management:
+  metrics:
+    enable:
+      all: true
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    prometheus:
+      enabled: true
